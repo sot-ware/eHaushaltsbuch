@@ -22,7 +22,7 @@ public class Filereadwrite {
            	os.writeObject(kal.list[i]);
             	//System.out.println(kal.kalender[i]);
             }
-//Achtung: Objekte können nur dann serialisiert werden wenn sie das Interface "Serializable" implementieren
+//Achtung: Objekte kï¿½nnen nur dann serialisiert werden wenn sie das Interface "Serializable" implementieren
             os.flush();
             os.close();
         }
@@ -34,19 +34,19 @@ public class Filereadwrite {
         }
     }
 	
-	public static boolean deserializeKalender(File file,kalender zubefüllenderKalender)
+	public static boolean deserializeKalender(File file,kalender zubefuellenderKalender)
     {
         ObjectInputStream is;
         try {
             is = new ObjectInputStream(new FileInputStream(file));
             
             int length = is.readInt();
-            zubefüllenderKalender = new kalender();
-            zubefüllenderKalender.list = new einnahmen[length];
+            zubefuellenderKalender = new kalender();
+            zubefuellenderKalender.list = new einnahmen[length];
             for(int i = 0;i<length;i++){
-            zubefüllenderKalender.list[i] = (einnahmen) is.readObject();
+            zubefuellenderKalender.list[i] = (einnahmen) is.readObject();
             }
-            System.out.println(zubefüllenderKalender.list[0]);
+            System.out.println(zubefuellenderKalender.list[0]);
             is.close();
             return true;
  
@@ -75,7 +75,7 @@ public class Filereadwrite {
             ObjectOutputStream os = new ObjectOutputStream(
                     new FileOutputStream(file));
             os.writeObject(kal);
-//Achtung: Objekte können nur dann serialisiert werden wenn sie das Interface "Serializable" implementieren
+//Achtung: Objekte kï¿½nnen nur dann serialisiert werden wenn sie das Interface "Serializable" implementieren
             os.close();
         }
         catch (FileNotFoundException e1) {
@@ -86,12 +86,12 @@ public class Filereadwrite {
         }
     }
 	
-	public static boolean deserialize(File file,kalender zubefüllenderKalender)
+	public static boolean deserialize(File file,kalender zubefuellenderKalender)
     {
         ObjectInputStream is;
         try {
             is = new ObjectInputStream(new FileInputStream(file));
-            zubefüllenderKalender = (kalender) is.readObject();
+            zubefuellenderKalender = (kalender) is.readObject();
             is.close();
             return true;
  

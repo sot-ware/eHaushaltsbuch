@@ -9,7 +9,7 @@ public class eHaushaltsbuch {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Willkommen, drücken sie 1 für laden 2 für neuer Kalender");
+		System.out.println("Willkommen, drÃ¼cken sie 1 fÃ¼r laden 2 fÃ¼r neuer Kalender");
 		//Erstelle neuen TestKalender
 		Datenstrukturen.kalender kalender = new Datenstrukturen.kalender();
 		//Erstelle eine neue Einnahmme;
@@ -17,7 +17,7 @@ public class eHaushaltsbuch {
 		java.util.Date datum = new java.util.Date(System.currentTimeMillis());
 		Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(500.0,datum,0,"");
 		
-		//Einnahme in Kalender einfügen
+		//Einnahme in Kalender einfÃ¼gen
 		kalender.addEinnahme(e);
 
 		//Speichern des Kalenders
