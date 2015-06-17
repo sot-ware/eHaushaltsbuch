@@ -57,8 +57,7 @@ public class Oberflaeche extends JFrame  {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"test", null, null, null},
-				{null, null, null, null},
+					
 			},
 			new String[] {
 				"Text", "Betrag", "Datum", "Art"
@@ -117,8 +116,8 @@ public class Oberflaeche extends JFrame  {
 				System.out.println(textArea_1.getText()); //Datum
 				System.out.println( comboBox.getSelectedItem().toString() ); //Art
 				
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "test"});
+//				DefaultTableModel model = (DefaultTableModel) table.getModel();
+//				model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "test"});
 				
 				
 			}
@@ -137,10 +136,10 @@ public class Oberflaeche extends JFrame  {
 		
 	}
 	
-	public void addColumn() {
+	public void addColumn(String referenz,double betrag,java.util.Date Datum,String art) {
 	
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "test"});
+		model.addRow(new Object[]{referenz, betrag, Datum, art});
 		
 	}
 	

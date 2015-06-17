@@ -15,13 +15,6 @@ public class mainWindow  {
 		//MenŸ zum test noch Textbasierend.
 		System.out.println("Willkommen, drŸcken sie 1 fŸr laden 2 fŸr neuer Kalender");
 		//...
-		//...
-	
-		Oberflaeche UI = new Oberflaeche();
-		UI.setVisible(true);
-	
-		UI.addColumn();
-		
 		//Erstelle neuen TestKalender
 		Datenstrukturen.kalender kalender = new Datenstrukturen.kalender();
 		
@@ -29,27 +22,65 @@ public class mainWindow  {
 		//Erstelle ein Datum
 		java.util.Date datum = new java.util.Date(System.currentTimeMillis());
 
-		Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(500.0,datum,0,"");
+		Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(500.0,datum,"ALT","");
 		
 		//Einnahme in Kalender einfŸgen
 		kalender.addEinnahme(e);
-		
-		
-		
-	
-
-		//Speichern des Kalenders
 		File f = new File("Test.kal");
 		Datenstrukturen.Filereadwrite.serializeKalender(f, kalender);
-		
+		//...
+	
+		Oberflaeche UI = new Oberflaeche();
+		UI.setVisible(true);
 		//Laden des Kalenders in eine neue variable
-		f = new File("Test.kal");
+		//File f = new File("Test.kal");
 		Datenstrukturen.kalender k = new Datenstrukturen.kalender() ;
 		Datenstrukturen.Filereadwrite.deserializeKalender(f, k);
+		kalender = new Datenstrukturen.kalender();
+		datum = new java.util.Date(System.currentTimeMillis());
+		e = new Datenstrukturen.einnahmen(500.0,datum,"LUSTIG","");
+//		
+//		//Einnahme in Kalender einfŸgen
+		kalender.addEinnahme(e);
+//		
+		Object[][] a = new Object [4][kalender.list.length]; 
 		
-		//Ausgabe des neuen Kalenders
-		System.out.print(k);
-		
+		for(int i=0;i<kalender.list.length;i++){
+
+				UI.addColumn(kalender.list[i].getReferenz(),kalender.list[i].getEinnahme(), 
+						kalender.list[i].getDatum(), kalender.list[i].getArt());
+				
+				
+				
+			}
+		}
+//	//	UI.addColumn();
+//		
+//		//Erstelle neuen TestKalender
+//		Datenstrukturen.kalender kalender = new Datenstrukturen.kalender();
+//		
+//		//Erstelle eine neue Einnahmme
+//		//Erstelle ein Datum
+//		java.util.Date datum = new java.util.Date(System.currentTimeMillis());
+//
+//		Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(500.0,datum,0,"");
+//		
+//		//Einnahme in Kalender einfŸgen
+//		kalender.addEinnahme(e);
+//		
+//		
+//		
+//	
+//
+//		//Speichern des Kalenders
+//		File f = new File("Test.kal");
+//		Datenstrukturen.Filereadwrite.serializeKalender(f, kalender);
+//		
+//
+//		
+//		//Ausgabe des neuen Kalenders
+//		System.out.print(k);
+//		
 		
 		
 		
@@ -58,4 +89,4 @@ public class mainWindow  {
 
 
 	
-}
+
