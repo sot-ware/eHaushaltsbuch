@@ -17,6 +17,7 @@ public class Filereadwrite {
             ObjectOutputStream os = new ObjectOutputStream(
                     new FileOutputStream(file));
            os.writeInt(kal.list.length);
+           System.out.println(kal.list.length);
            
            for(int i = 0;i<kal.list.length;i++){
            	os.writeObject(kal.list[i]);
@@ -34,34 +35,48 @@ public class Filereadwrite {
         }
     }
 	
-	public static boolean deserializeKalender(File file,kalender zubefuellenderKalender)
+	public static kalender deserializeKalender(File file,kalender zubefuellenderKalender)
     {
         ObjectInputStream is;
         try {
             is = new ObjectInputStream(new FileInputStream(file));
             
             int length = is.readInt();
+            
             zubefuellenderKalender = new kalender();
             zubefuellenderKalender.list = new einnahmen[length];
             for(int i = 0;i<length;i++){
-            zubefuellenderKalender.list[i] = (einnahmen) is.readObject();
+            	System.out.println("A+"+i);
+            einnahmen temp = (einnahmen) is.readObject();
+            zubefuellenderKalender.list[i] = temp;
+            if((temp).getArt() != null){
+            zubefuellenderKalender.list[i].setArt((temp).getArt());
             }
-            System.out.println(zubefuellenderKalender.list[0]);
+            zubefuellenderKalender.list[i].setEinnahme((temp).getEinnahme());
+            if((temp).getReferenz() != null){
+            zubefuellenderKalender.list[i].setReferenz((temp).getReferenz());
+            }
+            if((temp).getDatum() != null){
+            zubefuellenderKalender.list[i].setDatum((temp).getDatum());
+            }
+            System.out.println(zubefuellenderKalender.list[i]);
+            }
+            
             is.close();
-            return true;
+            return zubefuellenderKalender;
  
         }
         catch (FileNotFoundException e1) {
             e1.printStackTrace();
-            return false;
+            return new kalender();
         }
         catch (IOException e1) {
             e1.printStackTrace();
-            return false;
+            return new kalender();
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return false;
+            return new kalender();
         }
 
 }

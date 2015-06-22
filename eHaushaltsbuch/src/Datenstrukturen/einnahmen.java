@@ -2,13 +2,13 @@ package Datenstrukturen;
 
 public class einnahmen implements java.io.Serializable {
 	private double einnahme;
-	private java.util.Date datum;
+	private String datum;
 	private String art;
 	private String referenz;
 	
 	//Einnahmen erstellung
 	
-	public einnahmen(double einnahmen,java.util.Date datum, String art, String referenz){
+	public einnahmen(double einnahmen,String datum, String art, String referenz){
 		this.einnahme = einnahmen;
 		this.datum = datum;
 		this.art = art;
@@ -52,11 +52,11 @@ public class einnahmen implements java.io.Serializable {
 		this.einnahme = einnahme;
 	}
 
-	public java.util.Date getDatum() {
+	public String getDatum() {
 		return datum;
 	}
 
-	public void setDatum(java.util.Date datum) {
+	public void setDatum(String datum) {
 		this.datum = datum;
 	}
 

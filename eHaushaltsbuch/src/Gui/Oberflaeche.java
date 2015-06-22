@@ -33,6 +33,9 @@ public class Oberflaeche extends JFrame  {
 	private JTable table;
 	private JTextField textField;
 	private JFrame frame;
+	private double bilanz = 0.0;
+	public Datenstrukturen.kalender kalender;
+
 	
 	public Oberflaeche(){
 		
@@ -47,6 +50,7 @@ public class Oberflaeche extends JFrame  {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	
 		
 
 		
@@ -115,10 +119,22 @@ public class Oberflaeche extends JFrame  {
 				System.out.println(textArea.getText()); //Betrag
 				System.out.println(textArea_1.getText()); //Datum
 				System.out.println( comboBox.getSelectedItem().toString() ); //Art
+				if(textArea.getText()!= null){
+				addColumn(txtrText.getText(),Double.parseDouble(textArea.getText()),textArea_1.getText(),comboBox.getSelectedItem().toString());
+				Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(Double.parseDouble(textArea.getText()),textArea_1.getText(),comboBox.getSelectedItem().toString(),txtrText.getText());
+				kalender.addEinnahme(e);
+				}
+				else{
+					addColumn(txtrText.getText(),0.0,textArea_1.getText(),comboBox.getSelectedItem().toString());
+					Datenstrukturen.einnahmen e = new Datenstrukturen.einnahmen(0.0,textArea_1.getText(),comboBox.getSelectedItem().toString(),txtrText.getText());
+					kalender.addEinnahme(e);
+				}
 				
-//				DefaultTableModel model = (DefaultTableModel) table.getModel();
-//				model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "test"});
+				File f = new File("Test.kal");
+				Datenstrukturen.Filereadwrite.serializeKalender(f, kalender);
 				
+				calcBilanz();
+
 				
 			}
 		});
@@ -128,6 +144,7 @@ public class Oberflaeche extends JFrame  {
 		
 		textField = new JTextField();
 		textField.setEditable(false);
+		textField.setText(this.bilanz+" Euro");
 		textField.setBounds(225, 323, 80, 28);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -136,7 +153,19 @@ public class Oberflaeche extends JFrame  {
 		
 	}
 	
-	public void addColumn(String referenz,double betrag,java.util.Date Datum,String art) {
+	public void calcBilanz(){
+		double z = 0;
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for(int i = 0;i<model.getRowCount();i++){
+			z += Double.parseDouble(model.getValueAt(i, 1).toString());
+			
+		}
+		
+		this.bilanz = Math.round(z);
+		textField.setText(this.bilanz+" Euro");
+	}
+	
+	public void addColumn(String referenz,double betrag,String Datum,String art) {
 	
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.addRow(new Object[]{referenz, betrag, Datum, art});
